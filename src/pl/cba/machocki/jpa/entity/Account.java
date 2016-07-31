@@ -4,8 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Account {
@@ -14,12 +12,8 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private long accNum;
+	private String accNum;
 	private double balance;
-
-	@OneToOne
-	@JoinColumn(name = "accTypeId")
-	AccType accType;
 
 	
 	public long getId() {
@@ -30,11 +24,11 @@ public class Account {
 		this.id = id;
 	}
 
-	public long getAccNum() {
+	public String getAccNum() {
 		return accNum;
 	}
 
-	public void setAccNum(long accNum) {
+	public void setAccNum(String accNum) {
 		this.accNum = accNum;
 	}
 
@@ -44,14 +38,6 @@ public class Account {
 
 	public void setBalance(double balance) {
 		this.balance = balance;
-	}
-
-	public AccType getAccType() {
-		return accType;
-	}
-
-	public void setAccType(AccType accType) {
-		this.accType = accType;
 	}
 
 }

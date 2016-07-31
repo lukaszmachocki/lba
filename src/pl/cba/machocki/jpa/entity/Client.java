@@ -5,28 +5,34 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 @Entity
+@NamedQuery(name = "Client.getClientByLogin", query = "select c from Client c where c.login=?1")
 public class Client {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-
+	
 	private String firstName;
 	private String secondName;
 	private String lastName;
 	private String gender;
-	private long peselNum;
-
+	private String peselNum;
 	private String login;
 	private String password;
 	private String hint;
+	private String pin;
 
 	@OneToOne
 	@JoinColumn(name = "accId")
 	private Account account;
+
+	@OneToOne
+	@JoinColumn(name = "accTypeId")
+	private AccType accType;
 
 	
 	public long getId() {
@@ -69,11 +75,11 @@ public class Client {
 		this.gender = gender;
 	}
 
-	public long getPeselNum() {
+	public String getPeselNum() {
 		return peselNum;
 	}
 
-	public void setPeselNum(long peselNum) {
+	public void setPeselNum(String peselNum) {
 		this.peselNum = peselNum;
 	}
 
@@ -107,6 +113,22 @@ public class Client {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public String getPin() {
+		return pin;
+	}
+
+	public void setPin(String pin) {
+		this.pin = pin;
+	}
+
+	public AccType getAccType() {
+		return accType;
+	}
+
+	public void setAccType(AccType accType) {
+		this.accType = accType;
 	}
 
 }
